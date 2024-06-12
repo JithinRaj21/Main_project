@@ -1,0 +1,100 @@
+ <!-- navbar -->
+ {% load static %}
+
+ <style>
+
+.navbar-nav.ml-auto .nav-link.dropdown-toggle {
+    color: #fff;
+    font-size: 24px;
+    text-decoration: none;
+    padding: 5px;
+}
+
+.navbar-nav.ml-auto .nav-link.dropdown-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+}
+
+.navbar-nav.ml-auto .nav-link.dropdown-toggle::after {
+    display: none;
+}
+
+.navbar-nav.ml-auto .nav-link.dropdown-toggle .fas.fa-user-circle {
+
+    border-radius: 50%;
+    background-color: #000080;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Dropdown menu */
+.navbar-nav.ml-auto .dropdown-menu {
+    border: none;
+    background-color: blue;
+}
+
+.navbar-nav.ml-auto .dropdown-menu .dropdown-item {
+    color: #fff; */
+}
+
+.navbar-nav.ml-auto .dropdown-menu .dropdown-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+ </style>
+
+  <nav class="navbar navbar-expand-lg" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#" id="logo"><img src="{% static 'images/hsptllogonew.png' %}" alt=""></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span><i class="fa-solid fa-bars" style="color: white; font-size: 23px;"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="fas fa-home"></i>Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'appointment' %}">Appointment</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'doctor' %}">Doctor</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'department' %}">Department</a>
+          </li>
+
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'contact' %}"> Contact</a>
+          </li>
+        </ul>
+
+     <ul class="navbar-nav ml-auto">
+                {% if request.session.patient_id %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle"></i> <!-- Profile icon -->
+                            {{ request.session.patient_name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="{% url 'patient_dashboard' %}">My Info</a></li>
+                            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+
+      </div>
+    </div>
+  </nav>

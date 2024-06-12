@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<section id="doctor" class="doctor">
+  <div class="container">
+  <div class="heading4">Our Doctors</div>
+</div>
+  <div class="container" id="container_doc">
+    <div class="row">
+        {% for doctor in doctor %}
+      <div class="col-md-3 py-3 py-md-0">
+        <div class="card">
+            <a href="{% url 'detail_doctor' doctor.id %}">
+                <img src="{{doctor.image.url}}" alt="">
+            </a>
+          <div class="card-body">
+            <h3>{{doctor.name}}</h3>
+            <h6>{{doctor.specialization}}</h6>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+    </div>
+
+        <div class="page-btn">
+            {% if doctor.has_previous %}
+            <a href="?page={{doctor.previous_page_number}}"><span><<</span></a>
+            {% endif %}
+            {% for i in doctor.paginator.page_range %}
+            <a href="?page={{i}}"><span>{{i}}</span></a>
+            {% endfor %}
+            {% if doctor.has_next %}
+            <a href="?page={{doctor.next_page_number}}"><span>>></span></a>
+            {% endif %}
+        </div>
+  </div>
+</section>
+
+{% endblock %}

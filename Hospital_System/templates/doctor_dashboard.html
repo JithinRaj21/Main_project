@@ -1,0 +1,350 @@
+  {% load static %}
+
+  {% block content %}
+
+
+    <style>
+/* CSS Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #bad7f3;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styles */
+.navbar {
+    background-color: #222241;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo img {
+    width: 50px;
+    border-radius: 50%;
+}
+
+.navbar-links a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-links a:hover {
+    background-color: #34495e;
+}
+
+/* Container Styles */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Header Styles */
+header {
+    background-color: #6b1414;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px 10px 0 0;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Appointments Section Styles */
+.appointments h2 {
+    color: #2c3e50;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.appointment-details {
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.appointment-details:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.patient-heading {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+    color: #2c3e50;
+}
+
+.patient-link {
+    cursor: pointer;
+    color: #3f51b5;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.patient-link:hover {
+    color: #3498db;
+}
+
+.prescription-details {
+    margin-top: 10px;
+    font-size: 1em;
+    color: #34495e;
+}
+
+.edit-prescription {
+    margin-top: 20px;
+}
+
+.edit-prescription a {
+    color: #fff;
+    background-color:#0fb70a;
+    text-decoration: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.edit-prescription a:hover {
+    background-color:  #50C878;
+}
+
+/* Edit Form Styles */
+.edit-form {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.edit-form:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.edit-form label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.edit-form input[type="text"],
+.edit-form textarea {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #dddddd;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.edit-form input[type="text"]:focus,
+.edit-form textarea:focus {
+    border-color: #3498db;
+}
+
+.edit-form button {
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.edit-form button:hover {
+    background-color: #2980b9;
+}
+
+/* Medical Records Section Styles */
+.medical-records {
+    margin-top: 40px;
+}
+
+.medical-records h4 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.medical-records-wrapper {
+    overflow-x: auto;
+}
+
+.medical-records-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.medical-records-table th,
+.medical-records-table td {
+    padding: 12px;
+    text-align: left;
+}
+
+.medical-records-table th {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.medical-records-table td {
+    background-color: #ecf0f1;
+    border-bottom: 1px solid #ddd;
+}
+
+.medical-records-table tbody tr {
+    background-color: #ecf0f1;
+}
+
+.medical-records-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.medical-records-table th:last-child {
+    text-align: center;
+}
+
+.medical-records-table th,
+.medical-records-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+    </style>
+
+    <div class="navbar">
+        <a href="#home" class="logo">
+            <img src="{% static 'images/hsptllogonew.png' %}" alt="Logo">
+        </a>
+        <div class="navbar-links">
+            <a href="{% url 'doctor_profile' doctor.name %}">My Profile</a>
+            <a href="{% url 'logout' %}">LogOut</a>
+        </div>
+    </div>
+    <div class="container">
+        <header>
+            <h1>Welcome, {{ doctor.name }} !</h1>
+        </header>
+        <section class="appointments">
+            <h2>My Appointments</h2>
+            <ul>
+                {% for appointment in appointments %}
+                    <li>
+                        <div class="appointment-details">
+                            <h3 class="patient-heading">
+                                <span class="patient-link" onclick="window.location='{% url 'patient_details' appointment.patient_name %}'">{{ appointment.patient_name }}</span>
+                            </h3>
+                            <div class="patient-details">
+                                <span>Next Appointment: {{ appointment.booking_date }}</span>
+                                {% if prescriptions %}
+                                    <div class="prescription-details">
+                                        <h4>Prescription:</h4>
+                                        <ul>
+                                            {% for prescription in prescriptions %}
+                                                {% if prescription.patient_name == appointment.patient_name %}
+                                                    <li>{{ prescription.medication }} - {{ prescription.dosage }} - {{ prescription.frequency }}</li>
+
+                                                {% endif %}
+                                            {% endfor %}
+                                        </ul>
+                                    </div>
+                                {% endif %}
+                                <div class="edit-prescription">
+                                    <a href="#" onclick="showEditForm({{ appointment.id }}); return false;">Edit</a>
+                                </div>
+                            </div>
+                            <div class="edit-form" id="edit-form-{{ appointment.id }}">
+                                <form method="post" action="{% url 'edit_prescription' appointment.id %}">
+                                    {% csrf_token %}
+                                    <label for="medication">Medication:</label>
+                                    <input type="text" id="medication" name="medication" required>
+                                    <label for="dosage">Dosage:</label>
+                                    <input type="text" id="dosage" name="dosage" required>
+                                    <label for="frequency">Frequency:</label>
+                                    <input type="text" id="frequency" name="frequency" required>
+                                    <label for="notes">Notes:</label>
+                                    <textarea id="notes" name="notes" required></textarea>
+                                    <button type="submit">Save</button>
+                                </form>
+                            </div>
+                            <div class="medical-records">
+                                <h4>Medical Records:</h4>
+                                <div class="medical-records-wrapper">
+                                    <table class="medical-records-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Diagnosis</th>
+                                                <th>Treatment Plan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for record in medical_records %}
+                                                {% if record.patient_name == appointment.patient_name %}
+                                                    <tr>
+                                                        <td>{{ record.diagnosis }}</td>
+                                                        <td>{{ record.treatment_plan }}</td>
+                                                    </tr>
+                                                {% endif %}
+                                            {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                {% empty %}
+                    <li>No appointments</li>
+                {% endfor %}
+            </ul>
+        </section>
+    </div>
+    <script>
+        function showEditForm(appointmentId) {
+            var editForm = document.getElementById('edit-form-' + appointmentId);
+            editForm.style.display = 'block';
+        }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  {% endblock %}

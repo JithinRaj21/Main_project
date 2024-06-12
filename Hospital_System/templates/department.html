@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<section id="department" class="department">
+  <div class="container">
+  <div class="heading4">Our Departments</div>
+</div>
+  <div class="container" id="container3">
+    <div class="row">
+        {% for dept in department %}
+      <div class="col-md-3 py-3 py-md-0">
+        <div class="card">
+          <img src="{{dept.image.url}}" alt="">
+          <div class="card-body">
+            <h3>{{dept.name}}</h3>
+          </div>
+        </div>
+      </div>
+        {% endfor %}
+    </div>
+
+    <div class="page-btn">
+            {% if department.has_previous %}
+            <a href="?page={{department.previous_page_number}}"><span><<</span></a>
+            {% endif %}
+            {% for i in department.paginator.page_range %}
+            <a href="?page={{i}}"><span>{{i}}</span></a>
+            {% endfor %}
+            {% if department.has_next %}
+            <a href="?page={{department.next_page_number}}"><span>>></span></a>
+            {% endif %}
+        </div>
+  </div>
+</section>
+
+{% endblock %}

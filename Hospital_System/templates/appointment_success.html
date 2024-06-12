@@ -1,0 +1,75 @@
+
+{% load static %}
+
+{% block content %}
+
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background:linear-gradient(90deg, #5f2c82, #49a09d);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            text-align: center;
+        }
+        .container h1 {
+            color: #4CAF50;
+            margin-bottom: 10px;
+        }
+        .container p {
+            color: #555;
+            line-height: 1.5;
+        }
+        .container .details {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .container .details p {
+            margin: 5px 0;
+        }
+        .container .button {
+            margin-top: 20px;
+        }
+        .container .button a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #4CAF50;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            transition: background-color 0.3s ease;
+        }
+        .container .button a:hover {
+            background-color: #45a049;
+        }
+    </style>
+
+    <div class="container">
+        <h1>Appointment Confirmed</h1>
+        <p>Thank you! Your appointment has been successfully scheduled.</p>
+        <div class="details">
+
+
+        </div>
+        <div class="button">
+            <a href="{% url 'home' %}">Back to Home</a>
+        </div>
+    </div>
+
+
+
+
+
+{% endblock %}

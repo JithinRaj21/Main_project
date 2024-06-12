@@ -1,0 +1,113 @@
+   {% load static %} 
+    
+    {% block content %}
+
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #e0f7fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #00796b;
+            font-size: 2em;
+        }
+        h3 {
+            color: #004d40;
+            border-bottom: 2px solid #004d40;
+            padding-bottom: 5px;
+        }
+        p {
+            font-size: 1.1em;
+            color: #333333;
+        }
+        strong {
+            color: #00796b;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        table, th, td {
+            border: 1px solid #e0e0e0;
+        }
+        th, td {
+            padding: 15px;
+            text-align: left;
+        }
+        th {
+            background-color: #00796b;
+            color: #ffffff;
+        }
+        tr:nth-child(even) {
+            background-color: #e0f2f1;
+        }
+        td.medication, td.dosage {
+            background-color: #b2dfdb;
+            color:  #004d40;
+        }
+        td.frequency, td.start_date, td.end_date, td.notes {
+            background-color: #b2dfdb;
+            color: #004d40;
+        }
+    </style>
+
+
+<div class="container">
+    <h2>Patient Details</h2>
+    <h3>Patient Information</h3>
+    <p><strong>Full Name:</strong> {{ patient.name }}</p>
+    
+    <p><strong>Phone:</strong> {{ patient.phone_number}}</p>
+    <p><strong>Email:</strong> {{ patient.email }}</p>
+       
+  
+    <h3>Medical History</h3>
+    <table>
+        <thead>
+            <tr>
+
+                <th>Medication</th>
+                <th>Dosage</th>
+                <th>Frequency</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for prescription in prescriptions %}
+            <tr>
+
+                <td class="medication">{{ prescription.medication }}</td>
+                <td class="dosage">{{ prescription.dosage }}</td>
+                <td class="frequency">{{ prescription.frequency }}</td>
+                <td class="start_date">{{ prescription.start_date }}</td>
+                <td class="end_date">{{ prescription.end_date }}</td>
+                <td class="notes">{{ prescription.notes }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+
+
+
+
+
+{% endblock %}

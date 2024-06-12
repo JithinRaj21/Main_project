@@ -1,0 +1,98 @@
+{% load static %}
+
+{% block content %}
+
+
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f0f0f0; /* Light gray background */
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Increased shadow */
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-header img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+            border: 3px solid #3f51b5; /* Violet border */
+        }
+
+        .profile-details {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-details h2 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #3f51b5; /* Violet text color */
+        }
+
+        .profile-details p {
+            margin: 5px 0;
+            color: #757575;
+        }
+
+        .profile-description {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #3f51b5; /* Violet background */
+            text-decoration: none;
+            border: 1px solid #3f51b5;
+            border-radius: 5px;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-link:hover {
+            background-color: #303f9f; /* Darker violet shade on hover */
+        }
+    </style>
+
+
+<div class="container">
+    <div class="profile-header">
+        <img src="{{ doctor.image.url }}" alt="Doctor's Profile Picture">
+        <div class="profile-details">
+            <h2>{{ doctor.name }}</h2>
+            <p>Specialization: {{ doctor.specialization }}</p>
+            <p>Username: {{ doctor_username }}</p>
+        </div>
+    </div>
+    <div class="profile-description">
+        <p>{{ doctor.desc }}</p>
+    </div>
+    <a href="{% url 'doctor_dashboard' doctor.name  %}" class="back-link">Back to Dashboard</a>
+</div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,181 @@
+{% load static %}
+
+{% block content %}
+
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #007bff; /* Primary blue color */
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .navbar-nav {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 1rem;
+        }
+
+        .navbar-nav .nav-item {
+            display: inline;
+        }
+
+        .navbar-nav .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar-nav .nav-link:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 1rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: white;
+            padding: 1rem;
+        }
+
+        .card-body {
+            padding: 1rem;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1rem;
+        }
+
+        .table th,
+        .table td {
+            padding: 0.75rem;
+            text-align: left;
+            border: 1px solid #dee2e6;
+        }
+
+        .table th {
+            font-weight: bold;
+            background-color: #e9ecef;
+            color: #343a40;
+            border-top: 2px solid #dee2e6;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .bg-light {
+            background-color: #f1f1f1 !important;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+    </style>
+
+    <!-- <nav class="navbar">
+        <a class="navbar-brand" href="#">
+            <img src="{% static 'images/hsptllogonew.png' %}" alt="Hospital Management System Logo">
+        </a>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Medical Records</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+            </li>
+        </ul>
+    </nav> -->
+
+    <div class="container my-5">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h2 class="mb-0">Medical Record Details</h2>
+            </div>
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th class="bg-light">Patient Name</th>
+                            <td>{{ record.patient_name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Diagnosis</th>
+                            <td>{{ record.diagnosis }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Doctor</th>
+                            <td>{{ record.doctor.name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="bg-light">Treatment</th>
+                            <td>{{ record.treatment_plan }}</td>
+                        </tr>
+                        <!-- Add more fields as necessary -->
+                    </tbody>
+                </table>
+                <!-- <div class="text-right">
+                    <a href="{% url 'nurse_dashboard' %}" class="btn btn-primary">Back to Home</a>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+    {% endblock %}

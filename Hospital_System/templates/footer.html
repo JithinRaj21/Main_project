@@ -1,0 +1,114 @@
+{% load static %}
+
+<style>
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.footer-wrapper {
+    background-color:#1A1A4B;
+    color: #fff;
+    padding: 40px 0;
+    position: relative;
+    margin-top: 40px;
+}
+
+.footer-logo img {
+    max-width: 60px; 
+}
+
+.social-links a {
+    
+    font-size: 30px;
+    margin: 0 10px;
+    transition: color 0.3s;
+    text-decoration: none; /* Ensuring no underlines */
+}
+
+
+
+.social-links a .fa-twitter {
+    color: #1da1f2; /* Twitter color */
+}
+
+.social-links a .fa-facebook-f {
+    color: #3b5998; /* Facebook color */
+}
+
+.social-links a .fa-instagram {
+    color: #e4405f; /* Instagram color */
+}
+
+.social-links a .fa-youtube {
+    color: #ff0000; /* YouTube color */
+}
+
+.social-links a .fa-pinterest-p {
+    color: #bd081c; /* Pinterest color */
+}
+
+.copyright {
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.arrow {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    transition: transform 0.3s;
+    
+}
+
+.arrow:hover {
+    transform: translateY(-5px);
+}
+
+.arrow img {
+    width: 40px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-wrapper {
+        text-align: center;
+    }
+
+    .arrow {
+        right: 50%;
+        transform: translateX(50%);
+    }
+}
+
+</style>
+
+
+<!-- footer -->
+<footer id="footer" class="footer-wrapper">
+    <div class="container text-center">
+        <div class="footer-logo mb-3">
+            <img src="{% static 'images/hsptllogonew.png' %}" alt="Lifeline Hospital Logo" class="img-fluid">
+        </div>
+        <div class="social-links mb-4">
+            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+        </div>
+        <div class="copyright mb-2">
+            &copy; <strong>Lifeline Hospital</strong>. All Rights Reserved
+        </div>
+    </div>
+    <a href="#" class="arrow">
+        <i><img src="{% static 'images/up-arrow.png' %}" alt="Back to top" width="50px"></i>
+    </a>
+</footer>
+<!-- footer -->
+
+
+

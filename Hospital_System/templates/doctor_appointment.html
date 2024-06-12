@@ -1,0 +1,147 @@
+
+{% load static %}
+{% block content  %}
+
+
+    <style>
+        body {
+            background-attachment: fixed;
+            background-color: #C9DBFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif; /* Added font family */
+        }
+
+        .appointment-form {
+            max-width: 800px;
+            width: 80%; /* Adjusted width for responsiveness */
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px; /* Increased border radius */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Increased box shadow */
+            box-sizing: border-box;
+        }
+
+        .appointment-form h1 {
+            margin-bottom: 30px; /* Increased margin */
+            text-align: center;
+            color: #333; /* Changed text color */
+        }
+
+        .appointment-form hr {
+            margin-bottom: 40px; /* Increased margin */
+            border-color: #999; /* Changed border color */
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* Increased margin */
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px; /* Increased margin */
+            color: #555; /* Changed label color */
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc; /* Changed border color */
+            border-radius: 5px; /* Increased border radius */
+            box-sizing: border-box;
+        }
+
+.form-group button {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-group button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+    </style>
+
+
+<!--<div class="appointment-form">-->
+<!--    <h1 class="text-center">Book An Appointment</h1>-->
+<!--    <hr>-->
+<!--    <form action="{% url 'appointment_for_doctor' doctor_name %}" method="post"> &lt;!&ndash; For booking with a specific doctor &ndash;&gt;-->
+<!--        {% csrf_token %}-->
+<!--        <div class="form-group">-->
+<!--            <label for="id_patient_name">Patient Name</label>-->
+<!--            {{ form.patient_name }}-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="id_phone_number">Phone Number</label>-->
+<!--            {{ form.phone_number }}-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="id_email_id">Email</label>-->
+<!--            {{ form.email_id }}-->
+<!--        </div>-->
+<!--        <div class="form-group">-->
+<!--            <label for="id_booking_date">Booking Date</label>-->
+<!--            {{ form.booking_date }}-->
+<!--        </div>-->
+<!--        &lt;!&ndash; Hidden input field to store the doctor's name &ndash;&gt;-->
+<!--        <input type="hidden" name="doctor_name" value="{{ doctor_name }}">-->
+<!--        &lt;!&ndash; Submit button &ndash;&gt;-->
+<!--        <button type="submit" class="btn btn-primary">Submit</button>-->
+<!--    </form>-->
+<!--</div>-->
+
+<!-- book_appointment.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment</title>
+</head>
+<body>
+    <div class="appointment-form">
+        <h1 class="text-center">Book An Appointment with {{ doctor.name }}</h1>
+        <hr>
+        <form action="{% url 'book_appointment' doctor.id %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="id_patient_name">Patient Name</label>
+                <input type="text" id="id_patient_name" name="patient_name">
+            </div>
+            <div class="form-group">
+                <label for="id_phone_number">Phone Number</label>
+                <input type="text" id="id_phone_number" name="phone_number">
+            </div>
+            <div class="form-group">
+                <label for="id_email_id">Email</label>
+                <input type="email" id="id_email_id" name="email_id">
+            </div>
+            <div class="form-group">
+                <label for="id_booking_date">Booking Date</label>
+                <input type="date" id="id_booking_date" name="booking_date">
+            </div>
+            <!-- Hidden input field to store the doctor's ID -->
+            <input type="hidden" name="doctor_id" value="{{ doctor.id }}">
+            <!-- Submit button -->
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
+
+
+
+{% endblock %}

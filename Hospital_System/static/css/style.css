@@ -1,0 +1,296 @@
+
+   /* navbar */
+#navbar{
+  background-color:#89CFF0;
+  font-family: 'Roboto', sans-serif;
+}
+#logo img{
+  border-radius: 10px;
+  width: 50px;
+  margin-left: 40px;
+}
+.navbar-nav{
+  margin-left: 50px;
+}
+.nav-item .nav-link{
+  color: black;
+  margin-left: 10px;
+  font-weight: bold;
+  transition: 0.5s;
+}
+.nav-item .nav-link:hover{
+  background: #f7f5f2;
+  border-radius: 5px;
+  color: black;
+}
+#navbar form button{
+  background: black;
+  color: white;
+  border: 1px solid white;
+}
+/* navbar */
+
+/* home content */
+
+.content{
+  padding-top: 210px;
+  margin-left: 56px;
+}
+
+.content h3{
+  font-size: 50px;
+  color: white;
+}
+.content p{
+  margin-top: 10px;
+  color: white;
+}
+
+#btn{
+  width: 150px;
+  height: 36px;
+  margin-top: 20px;
+  background: blue;
+  border-radius: 5px;
+  font-weight: bold;
+  border: none;
+  transition: 0.5s ease;
+  cursor: pointer;
+}
+#btn:hover{
+  background: orange;
+  color: white;
+}
+/* home content */
+
+/* footer */
+
+/* department */
+.department {
+  width: 100%;
+  background: #f7f5f2;
+  font-family: 'Roboto', sans-serif;
+}
+.heading4{
+  text-align: center;
+  color:black;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 70px;
+  border-bottom: 2px solid black;
+}
+#container3{
+  margin-top: 30px;
+}
+.department h3{
+  text-align: center;
+  color: black;
+  font-size: 20px;
+}
+
+
+.card {
+   margin: 16px;
+  }
+
+.card img {
+      width: 100%;
+      max-width: 100%; /* Ensure the image doesn't exceed the card width */
+      height: 200px; /* Set a fixed height */
+      object-fit: cover; /* Ensure the image covers the specified area */
+      border-radius: 8px 8px 0 0;
+        }
+/* department */
+
+/* about */
+#about{
+  width: 100%;
+  height: 90vh;
+  background: #f7f5f2;
+  font-family: 'Roboto', sans-serif;
+}
+#about .container{
+  padding-top: 90px;
+
+}
+.heading{
+
+  text-align: center;
+  margin-bottom: 50px;
+  color: black;
+  font-size: 30px;
+  font-weight: bold;
+}
+.heading span{
+  color: blue;
+}
+#about .card{
+  border-radius: 10px;
+
+}
+
+#about .card img{
+  border-radius: 10px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.about p{
+  padding-top:20px;
+  font-size:15px;
+  padding-bottom:60px;
+}
+
+.about h3{
+  padding-top:20px;
+
+}
+
+#about-btn{
+  width: 200px;
+  height: 36px;
+  background: transparent;
+  border: 2px solid blue;
+  color: blue;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: 0.5s;
+  cursor: pointer;
+  display: inline-flex; 
+  align-items: center; 
+  justify-content: center; 
+  text-decoration: none; 
+}
+
+#about-btn:hover{
+  background: #b2744c;
+  color: white;
+}
+@media screen and (max-width:982px){
+  #about p{
+    font-size: 8px;
+  }
+}
+@media screen and (max-width:766px){
+  #about p{
+    font-size: 15px;
+  }
+  #about{
+    height: 120vh;
+  }
+}
+/* about */
+
+
+/*  doctor */
+
+.doctor {
+  width: 100%;
+  background: #f7f5f2;
+  font-family: 'Roboto', sans-serif;
+}
+.heading4{
+  text-align: center;
+  color:black;
+  font-size: 30px;
+  font-weight: bold;
+  padding-top: 90px;
+  border-bottom:2px solid red;
+}
+#container_doc{
+  margin-top: 30px;
+}
+.doctor h3{
+  text-align: center;
+  color:blue;
+  font-size: 20px;
+}
+
+.doctor h6{
+  text-align:center;
+}
+
+
+.card {
+   margin: 16px;
+  }
+
+.card img {
+      width: 100%;
+      max-width: 100%; /* Ensure the image doesn't exceed the card width */
+      height: 200px; /* Set a fixed height */
+      object-fit: cover; /* Ensure the image covers the specified area */
+      border-radius: 8px 8px 0 0;
+        }
+/* doctor */
+
+
+/* see-all-link */
+
+.see-all-link  {
+      display: block;
+      margin-left:auto;
+      margin-top: 40px;
+      padding:10px 20px ;
+      text-align: center;
+      font-size: 16px;
+      background: transparent;
+      border: 2px solid blue;
+      color: blue;
+      text-decoration: none;
+      border-radius: 4px;
+      width: 200px;
+      transition: background-color 0.3s ease;
+   }
+
+.see-all-link:hover {
+      background-color: orange;
+     }
+
+ /* Paginator  */
+
+.page-btn{
+    margin: 0 auto 80px;
+}
+.page-btn span{
+    display: inline-block;
+    border: 1px solid #ff523b;
+    margin-left: 10px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    cursor: pointer;
+}
+.page-btn span:hover{
+    background: #ff523b;
+    color: white;
+}
+
+/* Appointment page */
+
+
+
+ /* Navbar dropdowns */
+.navbar-nav.ml-auto {
+    margin-right: 20px; /* Add margin to the right to avoid cut off */
+}
+
+.nav-item.dropdown .dropdown-menu {
+    left: auto;
+    right: 0;
+    margin-right: 20px; /* Add margin to avoid cut off */
+}
+
+
+table {
+       border-collapse: separate;
+       border-spacing: 10px; /* Adjust this value as needed for the space between columns and rows */
+    }
+th, td {
+      padding: 10px; /* Adjust this value as needed for the space inside cells */
+    }
+
+/* Contact Page */

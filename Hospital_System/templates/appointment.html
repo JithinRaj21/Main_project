@@ -1,0 +1,142 @@
+{% load static %}
+{% block content  %}
+
+
+
+
+    <style>
+        body {
+            background-color: #C9DBFF; /* Light gray background */
+            font-family: Arial, sans-serif; /* Font family */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .appointment-form {
+            max-width: 700px; /* Increased width for better readability */
+            width: 90%;
+            padding: 20px; /* Reduced padding */
+            background:  #F5F5F5; /* White background */
+            border-radius: 19px; /* Increased border radius */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Soft shadow */
+            box-sizing: border-box;
+        }
+
+        .appointment-form h1 {
+            margin-bottom: 10px; /* Reduced margin */
+            text-align: center;
+            color: #333; /* Darker text color */
+        }
+
+        .appointment-form hr {
+
+            margin-bottom: 40px; /* Increased margin */
+            border-color: #999; /* Changed border color */
+        }
+
+        .appointment-form button,
+        .appointment-form input[type="submit"] {
+            width: 100%; /* Full width button */
+            padding: 10px; /* Reduced padding */
+            border: none;
+            border-radius: 8px; /* Rounded corners */
+            background-color: #007bff; /* Blue background color */
+            color: #fff; /* White text color */
+            font-size: 16px; /* Increased font size */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .appointment-form button:hover,
+        .appointment-form input[type="submit"]:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+
+        /* Input field styling */
+        .appointment-form input[type="text"],
+        .appointment-form input[type="email"],
+        .appointment-form input[type="date"],
+        .appointment-form select {
+            width: 100%;
+            padding: 10px; /* Reduced padding */
+            margin-bottom: 15px; /* Reduced margin */
+            border: 1px solid #ccc; /* Light gray border */
+            border-radius: 5px; /* Rounded corners */
+            box-sizing: border-box;
+            font-size: 14px; /* Reduced font size */
+            transition: border-color 0.3s ease;
+            background-color: white ; /* White background */
+        }
+
+        /* Input focus style */
+        .appointment-form input[type="text"]:focus,
+        .appointment-form input[type="email"]:focus,
+        .appointment-form input[type="date"]:focus,
+        .appointment-form select:focus {
+            border-color: #007bff; /* Blue border color on focus */
+            outline: none;
+        }
+
+        /* Placeholder color */
+        .appointment-form ::placeholder {
+            color: #999; /* Lighter gray placeholder text */
+        }
+
+        /* Label styling */
+        .appointment-form label {
+            display: block; /* Ensure labels are displayed on a new line */
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555; /* Dark gray text color */
+        }
+
+        /* Adjust form field appearance */
+        .appointment-form p {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Adjust form field appearance */
+        .appointment-form input[type="submit"] {
+            margin-top: 15px; /* Reduced margin */
+        }
+
+        /* Additional styles to target all form fields */
+        .appointment-form select {
+            appearance: none;
+            background: url('data:image/svg+xml;utf8,<svg fill="%23999" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 12px center/12px;
+            background-color: #fff;
+            padding-right: 30px; /* Reduced space for the background icon */
+        }
+
+        /* Styling for the form container */
+        .appointment-form-container {
+            width: 100%;
+            max-width: 800px; /* Maximum width for larger screens */
+            margin: auto; /* Center alignment */
+        }
+
+    </style>
+
+
+<div class="appointment-form-container">
+    <div class="appointment-form">
+        <h1>Book An Appointment</h1>
+        <hr>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+</div>
+
+
+
+
+
+
+{% endblock %}

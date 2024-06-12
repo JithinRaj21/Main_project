@@ -1,0 +1,169 @@
+{% load static %}
+
+{% block content %}
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(90deg, #5f2c82, #49a09d);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .toggle-form a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .toggle-form a:hover {
+            text-decoration: underline;
+        }
+
+        .alert-container {
+            margin-bottom: 15px;
+        }
+
+        .alert {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            color: #3c763d;
+            background-color: #dff0d8;
+            border-color: #d6e9c6;
+        }
+
+        .alert-error {
+            color: #a94442;
+            background-color: #f2dede;
+            border-color: #ebccd1;
+        }
+    </style>
+
+    <div class="form-container">
+        <h2>Doctor Registration & Login</h2>
+
+        {% if messages %}
+            <div class="alert-container">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <div id="register-form" style="display: {% if not request.path == '/doctor/register/' %}none{% endif %};">
+            <form id="registration-form" action="{% url 'doctor_register' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="specialization" name="specialization" placeholder="Specialization" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Register</button>
+                </div>
+            </form>
+            <div class="toggle-form">
+                <p>Already have an account? <a href="#" onclick="toggleForms()">Login</a></p>
+            </div>
+        </div>
+
+        <div id="login-form" style="display: {% if request.path == '/doctor/register/' %}none{% else %}block{% endif %};">
+            <form action="{% url 'doctor_login' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+            <div class="toggle-form">
+                <p>Don't have an account? <a href="#" onclick="toggleForms()">Register</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleForms() {
+            var registerForm = document.getElementById('register-form');
+            var loginForm = document.getElementById('login-form');
+            if (registerForm.style.display === 'none') {
+                registerForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            } else {
+                registerForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            }
+        }
+    </script>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+<style>
+    /* Adjusting image size and container */
+.doctor-img-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.doctor-img {
+    width: 250px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Styling doctor info */
+.doctor-info {
+    padding: 20px;
+}
+
+.doctor-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.doctor-info h6 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.doctor-info p {
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+
+.btn-custom {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: blue;
+}
+
+</style>
+
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <div class="doctor-img-container">
+                    <img src="{{doctors.image.url}}" alt="{{doctors.name}}" class="doctor-img">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="doctor-info">
+                    <h1>{{doctors.name}}</h1>
+                    <h6>Speciality:{{doctors.specialization}}</h6>
+                    <p>{{doctors.desc}}</p>
+                    <a href="{% url 'appointment'  %}" class="btn btn-success btn-custom">Book Appointment</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

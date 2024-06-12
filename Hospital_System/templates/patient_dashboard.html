@@ -1,0 +1,278 @@
+{% load static %}
+{% block content %}
+<style>
+    body {
+        font-family: 'Helvetica Neue', sans-serif;
+        background-color: #e0f7fa;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 1000px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #00796b;
+        font-size: 2em;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    table, th, td {
+        border: 1px solid #e0e0e0;
+    }
+    th, td {
+        padding: 12px;
+        text-align: left;
+    }
+    th {
+        background-color: #00796b;
+        color: #ffffff;
+    }
+    tr:nth-child(even) {
+        background-color: #e0f2f1;
+    }
+
+     tr td {
+            background-color: #b2dfdb;
+        }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 4px 0;
+        font-size: 14px;
+        cursor: pointer;
+        text-align: center;
+        text-decoration: none;
+        outline: none;
+        color: #ffffff;
+        background-color:blue;
+        border: none;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+    .btn:hover {
+        background-color: #004d40;
+    }
+    .btn:active {
+        background-color: #00695c;
+        transform: translateY(2px);
+    }
+    .btn-danger {
+        background-color: #e53935;
+    }
+    .btn-danger:hover {
+        background-color: #b71c1c;
+    }
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .modal-content {
+        background-color: #ffffff;
+        margin: 10% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+    }
+    .modal-header, .modal-footer {
+        padding: 10px;
+        border-bottom: 1px solid #ddd;
+    }
+    .modal-header {
+        border-bottom: none;
+    }
+    .modal-header h5 {
+        margin: 0;
+    }
+    .modal-footer {
+        text-align: right;
+        border-top: 1px solid #ddd;
+    }
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+    }
+    .close:hover, .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    .form-group input[type="date"] {
+        width: calc(100% - 24px);
+        padding: 10px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .navbar {
+        background-color: #004d40;
+        overflow: hidden;
+    }
+
+    .navbar .logo {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 24px;
+    }
+
+    .navbar .navbar-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        padding-top: 10px;
+    }
+
+    .navbar .navbar-links a {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+    }
+
+    .navbar .navbar-links a:hover {
+        background-color: #b2dfdb;
+        color: black;
+    }
+
+    .logo img {
+        border-radius: 10px;
+        width: 40px;
+        margin-left: 40px;
+    }
+
+    a:hover {
+    color: #007bff;
+    }
+
+    a.hover-effect:active {
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+}
+
+
+
+
+
+
+</style>
+
+<div class="navbar">
+    <a href="#home" class="logo">
+        <img src="{% static 'images/hsptllogonew.png' %}" alt="Logo">
+    </a>
+    <div class="navbar-links">
+        <a href="{% url 'home' %}">Home</a>
+        <a href="{% url 'appointment' %}">Appointment</a>
+        <a href="{% url 'logout' %}">LogOut</a>
+    </div>
+</div>
+
+<div class="container">
+    <h2>My Appointments</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Patient Name</th>
+                <th>Doctor Name</th>
+                <th>Booked On</th>
+                <th>Appointment Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for appointment in appointments %}
+            <tr>
+                <td><a class="hover-effect" style="text-decoration:none;" href="{% url 'patient_details' appointment.patient_name %}">{{ appointment.patient_name}}</a></td>
+                <td>{{ appointment.doctor_name }}</td>
+                <td>{{ appointment.booked_on }}</td>
+                <td>{{ appointment.booking_date }}</td>
+                <td>{{ appointment.status }}</td>
+                <td>
+                    <button class="btn" onclick="openModal('editModal{{ appointment.id }}')">Edit</button>
+                    <!-- Edit Modal -->
+                    <div id="editModal{{ appointment.id }}" class="modal">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <span class="close" onclick="closeModal('editModal{{ appointment.id }}')">&times;</span>
+                                <h5>Edit Appointment</h5>
+                            </div>
+                            <div class="modal-body">
+                                <p>Patient: {{ appointment.patient_name }}</p>
+                                <p>Doctor: {{ appointment.doctor_name }}</p>
+                                <p>Booking Date: {{ appointment.booking_date }}</p>
+                                <p>Status: {{ appointment.status }}</p>
+                                <form method="post" action="{% url 'reschedule_appointment' appointment.id %}">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="booking_date">New Booking Date</label>
+                                        <input type="date" id="booking_date" name="new_date" required>
+                                    </div>
+                                    <button type="submit" class="btn">Reschedule</button>
+                                </form>
+                                <hr>
+                                <form method="post" action="{% url 'cancel_appointment' appointment.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Cancel Appointment</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn" onclick="closeModal('editModal{{ appointment.id }}')">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Edit Modal -->
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<script>
+    function openModal(modalId) {
+        document.getElementById(modalId).style.display = 'block';
+    }
+
+    function closeModal(modalId) {
+        document.getElementById(modalId).style.display = 'none';
+    }
+</script>
+
+
+{% endblock %}
