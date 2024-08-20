@@ -204,10 +204,13 @@
 
 <div class="container">
     <h2>My Appointments</h2>
+
+    <p class="patient-name">Patient Name: <a class="hover-effect" style="text-decoration:none;" href="{% url 'patient_details' patient.name %}">{{patient.name}}</a></p>
+    {% if appointments %}
     <table>
         <thead>
             <tr>
-                <th>Patient Name</th>
+
                 <th>Doctor Name</th>
                 <th>Booked On</th>
                 <th>Appointment Date</th>
@@ -262,6 +265,9 @@
             {% endfor %}
         </tbody>
     </table>
+     {% else %}
+    <p>No appointments found for {{ patient.name }}.</p>
+    {% endif %}
 </div>
 
 <script>
